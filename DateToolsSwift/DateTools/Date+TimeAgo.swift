@@ -176,8 +176,12 @@ public extension Date {
         else if (components.weekOfYear! >= 1) {
             return self.logicalLocalizedStringFromFormat(format: "%%d%@w", value: components.weekOfYear!)
         }
-        else if (components.day! >= 2) {
-            return self.logicalLocalizedStringFromFormat(format: "%%d%@d", value: components.day!)
+        else if (components.day! >= 1) {
+            var days = components.day!
+            if components.second! >= 0 || components.minute! >= 0 || components.hour! >= 0 {
+                days += 1
+            }
+            return self.logicalLocalizedStringFromFormat(format: "%%d%@d", value: days)
         }
         else if (isYesterday) {
             return self.logicalLocalizedStringFromFormat(format: "%%d%@d", value: 1)

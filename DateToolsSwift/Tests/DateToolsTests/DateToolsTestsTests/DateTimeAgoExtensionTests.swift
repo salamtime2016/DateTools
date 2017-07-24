@@ -25,8 +25,21 @@ class DateTimeAgoTests: XCTestCase {
     }
     
     func testShortTimeAgo() {
-        let testTimeAgo = Date().shortTimeAgo(since: Date() - 4.minutes)
-        XCTAssertTrue("4m" == testTimeAgo)
+        
+        let twoAndHalfDay = Date().shortTimeAgo(since: Date() - 60.hours)
+        XCTAssertTrue("3d" == twoAndHalfDay, "Got \(twoAndHalfDay) value")
+        
+        let oneAndHalfDay = Date().shortTimeAgo(since: Date() - 36.hours)
+        XCTAssertTrue("2d" == oneAndHalfDay, "Got \(oneAndHalfDay) value")
+        
+        let fullDay = Date().shortTimeAgo(since: Date() - 24.hours)
+        XCTAssertTrue("2d" == fullDay, "Got \(fullDay) value")
+        
+        let hours = Date().shortTimeAgo(since: Date() - 23.hours)
+        XCTAssertTrue("23h" == hours)
+        
+        let minutes = Date().shortTimeAgo(since: Date() - 4.minutes)
+        XCTAssertTrue("4m" == minutes)
     }
     
     func testStaticTimeAgo() {
